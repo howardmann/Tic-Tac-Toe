@@ -1,4 +1,4 @@
-console.log("C4 game");
+console.log("MAYHEM MODE");
 
 // JavaScript logic
 var Game = {
@@ -315,6 +315,7 @@ $(document).ready(function(){
     $cell.off('click');
     printWin();
     $buttonReset.show();
+    $buttonReset.html('Winner is '+ string + '<br/> Go again');
   };
 
   // Check round score and record value
