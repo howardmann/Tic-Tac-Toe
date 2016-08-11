@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 5%;
+  width: 100%;
+}
+
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.container {
+  width: 450px;
+  height: 450px;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+
+.cell {
+  width: 20%;
+  height: 20%;
+  background-color: #d3d3d3;
+  float: left;
+  border: 1px solid white;
+}
+
+button {
+  font-size: 20px;
+  /*padding: 10px;*/
+  width: 20%;
+  text-align: center;
+  outline: none;
+  float: left;
+}
+
+button.player1 {
+  margin-left: 30%;
+}
+
+button.player2 {
+  margin-right: 30%;
+}
+
+button.reset, button.build-board {
+  display: block;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+button.reset {
+  position: fixed;
+  top: 100px;
+}
+
+.msg-container {
+  text-align: center;
+  font-style: italic;
+  font-size: 25px;
+  width: 40%;
+  height: 80px;
+  padding: 10px;
+  display: block;
+  margin: 10px auto;
+  border: 1px solid black;
+  background-color: #d3d3d3;
+}
+
+.msg{
+  background-color: #d3d3d3;
+}
+
+
+.player1 {
+  background-color: chartreuse;
+}
+
+.player2 {
+  background-color: yellow;
+}
+
+.reset {
+  background-color: ghostwhite;
+}
+
+.game-setup {
+  display: block;
+}
+
+.game-play {
+  display: none;
+}
+
+select {
+  display: block;
+}
+
+.win {
+  background-color: hotpink;
+}
