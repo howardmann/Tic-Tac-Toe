@@ -3,29 +3,22 @@
 <head>
   <title>Connect 4 Board Game</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="sweetalert.css">
 </head>
 <body>
 
 
   <div class="game-setup">
-    <h1>Set up game</h1>
+    <h1>Crazy Tic-Tac-Toe: Set up game</h1>
 
     <p>Choose board size:</p>
     <select class="board-size">
-      <option value="3">3x3</option>
-      <option value="4">4x4</option>
-      <option value="5">5x5</option>
-      <option value="6">6x6</option>
-      <option value="7">7x7</option>
-      <option value="8">8x8</option>
-      <option value="9">9x9</option>
       <option value="10">10x10</option>
       <option value="11">11x11</option>
       <option value="12">12x12</option>
       <option value="13">13x13</option>
       <option value="14">14x14</option>
       <option value="15">15x15</option>
+      <option value="20">20x20</option>
     </select>
 
     <p>Choose length in a row:</p>
@@ -49,8 +42,6 @@
       <option value="5">5</option>
     </select>
 
-
-
     <button class="build-board">Build Board</button>
   </div>
 
@@ -62,6 +53,8 @@
     <div class="players clearfix">
       <button class="player1">Player 1 (1) <br/> Score: <span>0</span></button>
       <button class="player2">Player 2 (2) <br/> Score: <span>0</span></button>
+      <button class="player3">Player 3 (3) <br/> Score: <span>0</span></button>
+      <button class="player4">Player 4 (4) <br/> Score: <span>0</span></button>
     </div>
 
     <div class="msg-container">
@@ -77,7 +70,6 @@
   </div>
 
   <script src="jquery.js"></script>
-  <script src="sweetalert.min.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

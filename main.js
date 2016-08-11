@@ -209,7 +209,7 @@ $(document).ready(function(){
     maxScore = parseInt($(".board-round option:selected").val());
     var el = parseInt($(".board-count option:selected").val());
     if (el > size) {
-      swal("Length cannot be bigger than board size");
+      alert("Length cannot be bigger than board size");
     } else {
       winCount = el;
     }
@@ -222,7 +222,7 @@ $(document).ready(function(){
   var showBoard = function() {
     $('.game-setup').hide();
     $('.game-play').show();
-    $('.title').html("C4 game - Line up "+winCount+" in a row; First to score: "+maxScore);
+    $('.title').html("Crazy Free4All Tic-Tac-Toe game - Line up "+winCount+" in a row; First to score: "+maxScore);
     $buttonReset.hide();
   };
 
@@ -256,6 +256,7 @@ $(document).ready(function(){
   $buildButton.on('click',buildBoard);
 
   // Selecting players
+
   var player;
 
   // Function to assign player and update msg div
@@ -275,13 +276,13 @@ $(document).ready(function(){
     if (event.keyCode === 50) {
       pickPlayer('player2');
     }
-    // Spacebar shortcut
-    if (event.keyCode === 32) {
-      if (player === 'player1') {
-        pickPlayer('player2')
-      } else if (player === 'player2') {
-        pickPlayer('player1')
-      }
+    // Number 3 shortcut
+    if (event.keyCode === 51) {
+      pickPlayer('player3');
+    }
+    // Number 4 shortcut
+    if (event.keyCode === 52) {
+      pickPlayer('player4');
     }
   });
 
@@ -305,28 +306,34 @@ $(document).ready(function(){
   // Create checkScore and checkFinish callback
   var player1Score = 0; // Start with zero scores
   var player2Score = 0;
+  var player3Score = 0;
+  var player4Score = 0;
+
+  var signalPlayer = function(string) {
+    $msg.html('Winner is '+ string);
+    $body.removeClass().addClass(string);
+    $cell.off('click');
+    printWin();
+    $buttonReset.show();
+  };
 
   // Check round score and record value
   var checkRound = function() {
     // Player 1 wins round
-    if (Game.finish && Game.lastPlayer === 'player1') {
+    var lastPlayer = Game.lastPlayer;
+
+    if (Game.finish && lastPlayer === 'player1') {
       player1Score++;
-      $msg.html('Winner is player1 <br/> Reset Board');
-      $body.removeClass().addClass('player1');
-      console.log('player1Score:' + player1Score, 'player2Score '+player2Score);
-      $cell.off('click');
-      printWin();
-      $buttonReset.show();
-    // Player 2 wins round
-    } else if (Game.finish && Game.lastPlayer === 'player2') {
+      signalPlayer(lastPlayer);
+    } else if (Game.finish && lastPlayer === 'player2') {
       player2Score++;
-      $msg.html('Winner is player2 <br/> Reset Board');
-      $body.removeClass().addClass('player2');
-      console.log('player1Score:' + player1Score, 'player2Score '+player2Score);
-      $cell.off('click');
-      printWin();
-      $buttonReset.show();
-    // Draw round
+      signalPlayer(lastPlayer);
+    } else if (Game.finish && lastPlayer === 'player3') {
+      player3Score++;
+      signalPlayer(lastPlayer);
+    } else if (Game.finish && lastPlayer === 'player4') {
+      player4Score++;
+      signalPlayer(lastPlayer);
     } else if (Game.isEmpty() && !Game.finish) {
       $msg.html('Game draw. No points. <br/> Reset Board').removeClass().addClass('msg');
       $cell.off('click');
@@ -336,20 +343,25 @@ $(document).ready(function(){
     // Append round score
     $('button.player1 span').html(player1Score);
     $('button.player2 span').html(player2Score);
+    $('button.player3 span').html(player3Score);
+    $('button.player4 span').html(player4Score);
 
   };
 
   // Check total round wins
   var checkGame = function () {
-    if (player1Score === maxScore || player2Score === maxScore) {
-      if (player1Score > player2Score) {
-        swal("player1 WINS!", "Click ok to play again!", "success");
-      } else if (player1Score < player2Score) {
-        swal("player2 WINS!", "Click ok to play again!", "success");
-      }
-      $('.sweet-alert').on('click','button',function(){
-        location.reload();
-      });
+    if (player1Score === maxScore) {
+      alert("player1 WINS!");
+      location.reload();
+    } else if (player2Score === maxScore) {
+      alert("player2 WINS!");
+      location.reload();
+    } else if (player3Score === maxScore) {
+      alert("player3 WINS!");
+      location.reload();
+    } else if (player3Score === maxScore) {
+      alert("player4 WINS!");
+      location.reload();
     }
   };
 
@@ -364,7 +376,9 @@ $(document).ready(function(){
     if (player === undefined) {
       $msg.html("Please select a player");
     } else if (player === Game.lastPlayer && player !== undefined) {
-      $msg.html("Turn taken. Press spacebar to switch players");
+      $msg.html("Turn taken. Switch players");
+    } else if (Game.board[row][col] !== '.') {
+      $msg.html("Already marked. Pick again");
     } else {
       Game.addMark(player,row,col);
       Game.checkAll(player);
@@ -379,6 +393,8 @@ $(document).ready(function(){
     Game.newBoard(size); // Store the new board in a variable
     $cell.removeClass('player1');
     $cell.removeClass('player2');
+    $cell.removeClass('player3');
+    $cell.removeClass('player4');
     $cell.removeClass('win');
     $cell.on('click',takeMove);
 
@@ -391,11 +407,4 @@ $(document).ready(function(){
   };
 
   $('button.reset').on('click',resetBoard);
-  //
-  // $document.on('keypress', function(event) {
-  //   if (event.keyCode === 114) {
-  //     resetBoard();
-  //   }
-  // });
-
 }); // jQuery document ready function
