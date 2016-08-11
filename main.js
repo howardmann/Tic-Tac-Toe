@@ -73,12 +73,12 @@ var Game = {
     }
   },
   checkDiagLR: function(playerChosen) {
-    var count = 0;
     var length = this.board.length;
-    this.winArray = [];
     var maxLength = length - this.countWin + 1;
     // Run Bottom Half diagonal Top Left to Bottom Right (incl middle)
     for (var rowStart = 0; rowStart < maxLength; rowStart++) {
+      var count = 0;
+      this.winArray = [];
       for (var row = rowStart, col = 0; row < length && col < length; row++, col++) {
         if (this.board[row][col] === playerChosen) {
           count++;
@@ -96,6 +96,8 @@ var Game = {
     }
     // Run Top Half diagonal Top Left to Bottom Right (excl middle)
     for (var colStart = 1; colStart < maxLength; colStart++) {
+      var count = 0;
+      this.winArray = [];
       for (var col = colStart, row = 0; col < length && row < length; col++, row++) {
         if (this.board[row][col] === playerChosen) {
           count++;
@@ -113,13 +115,13 @@ var Game = {
     }
   },
   checkDiagRL: function(playerChosen) {
-    var count = 0;
     var length = this.board.length;
     var maxLength = length - this.countWin + 1;
-    this.winArray = [];
     // Run Bottom half diagonal Top Right to Botom Left (incl middle)
 
     for (var rowStart = 0; rowStart < maxLength; rowStart++) {
+      var count = 0;
+      this.winArray = [];
       for (var row = rowStart, col = (length-1); row < length && col >= 0; row++, col--) {
         if (this.board[row][col] === playerChosen) {
           count++;
@@ -137,6 +139,8 @@ var Game = {
     }
     // Run Top half diagonal Top Right to Botom Left (excl middle)
     for (var colStart = (length-2); colStart > (this.countWin - 2); colStart-- ) {
+      var count = 0;
+      this.winArray = [];
       for (var col = colStart, row = 0; col >= 0 && row <= (length-2); (col-- && row++)) {
         if (this.board[row][col] === playerChosen) {
           count++;
