@@ -15,9 +15,9 @@
 
 <h2>Technologies used:</h2>
 <ul>
-  <li>JavaScript, CSS and HTML
+  <li>JavaScript, CSS3 and HTML5
   <li>jQuery
-  <li><a href="http://t4t5.github.io/sweetalert/">sweetalert jQuery plugin</a>
+  <li><a href="http://t4t5.github.io/sweetalert/" target="_blank">sweetalert jQuery plugin</a>
 </ul>
 
 <h2>Author:</h2>
