@@ -5,12 +5,12 @@
 <h2>Instructions:</h2>
 <ol>  
   <li>Initial game set up to select custom board size, win length condition and total number of rounds
-  <li>Each player gets a turn to click and mark an empty square 
-  <li>Each player gets one turn. Switch players by pressing spacebar of clicking player buton
-  <li>First player to achieve win length (i.e. squares in a row) scores a round point
-  <li>Game draw if no player achieves win length and no empty squares remaining
-  <li>Click new round button to rest board
-  <li>First player to win chosen number of rounds wins
+  <li>Each player gets a turn to click on and mark an empty square 
+  <li>Switch players by pressing spacebar or clicking on player buton
+  <li>First player to achieve selected win length condition (i.e. squares in a row) scores a point
+  <li>No points if game draw
+  <li>Click new round button to reset board
+  <li>First player to win selected number of rounds wins
 </ol>
 
 <h2>Technologies used:</h2>
