@@ -17,7 +17,7 @@
 <ul>
   <li>JavaScript, CSS and HTML
   <li>jQuery
-  <li>sweetalert jQuery plugin
+  <li><a href="http://t4t5.github.io/sweetalert/">sweetalert jQuery plugin</a>
 </ul>
 
 <h2>Author:</h2>
