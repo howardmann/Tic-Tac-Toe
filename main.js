@@ -11,42 +11,40 @@ var Game = {
     // Reset game finish as false and selected player as undefined
     this.finish = false;
     this.lastPlayer = 'undefined';
-    console.log("newBoard created: "+n+" by "+n);
+    console.log("newBoard created: " + n + " by " + n);
   },
   winCount: function(n) {
     this.countWin = n;
-    console.log("Game of connect "+n);
+    console.log("Game of connect " + n);
   },
-  addMark: function(playerChosen,row,col) {
+  addMark: function(playerChosen, row, col) {
     if (playerChosen === this.lastPlayer) {
       console.log("Not your turn");
-    }
-    else if (this.board[row][col] === '.') {
+    } else if (this.board[row][col] === '.') {
       this.board[row][col] = playerChosen;
       this["lastPlayer"] = playerChosen;
-      console.log("Player: "+playerChosen+" addMark to row: "+row+", col: "+col);
+      console.log("Player: " + playerChosen + " addMark to row: " + row + ", col: " + col);
     } else {
       console.log("Already marked. Try again.");
     }
   },
   checkRows: function(playerChosen) {
-
     for (var row = 0; row < this.board.length; row++) {
       var count = 0;
       this.winArray = [];
       for (var col = 0; col < this.board.length; col++) {
-        if (this.board[row][col] === playerChosen){
+        if (this.board[row][col] === playerChosen) {
           count++;
-          this.winArray.push(Array(row,col));
+          this.winArray.push(Array(row, col));
         } else {
           count = 0;
           this.winArray = [];
         }
         if (count === this.countWin) {
-          console.log("checkRow true on row: "+row);
+          console.log("checkRow true on row: " + row);
           this["finish"] = true;
-          console.log("Start",row);
-          console.log("End",col);
+          console.log("Start", row);
+          console.log("End", col);
           return true;
         }
       }
@@ -57,15 +55,15 @@ var Game = {
       var count = 0;
       this.winArray = [];
       for (var row = 0; row < this.board.length; row++) {
-        if (this.board[row][col] === playerChosen){
+        if (this.board[row][col] === playerChosen) {
           count++;
-          this.winArray.push(Array(row,col));
+          this.winArray.push(Array(row, col));
         } else {
           count = 0;
           this.winArray = [];
         }
         if (count === this.countWin) {
-          console.log("checkCol true on col "+col);
+          console.log("checkCol true on col " + col);
           this["finish"] = true;
           return true;
         }
@@ -82,7 +80,7 @@ var Game = {
       for (var row = rowStart, col = 0; row < length && col < length; row++, col++) {
         if (this.board[row][col] === playerChosen) {
           count++;
-          this.winArray.push(Array(row,col));
+          this.winArray.push(Array(row, col));
         } else {
           count = 0;
           this.winArray = [];
@@ -101,7 +99,7 @@ var Game = {
       for (var col = colStart, row = 0; col < length && row < length; col++, row++) {
         if (this.board[row][col] === playerChosen) {
           count++;
-          this.winArray.push(Array(row,col));
+          this.winArray.push(Array(row, col));
         } else {
           count = 0;
           this.winArray = [];
@@ -118,14 +116,13 @@ var Game = {
     var length = this.board.length;
     var maxLength = length - this.countWin + 1;
     // Run Bottom half diagonal Top Right to Botom Left (incl middle)
-
     for (var rowStart = 0; rowStart < maxLength; rowStart++) {
       var count = 0;
       this.winArray = [];
-      for (var row = rowStart, col = (length-1); row < length && col >= 0; row++, col--) {
+      for (var row = rowStart, col = (length - 1); row < length && col >= 0; row++, col--) {
         if (this.board[row][col] === playerChosen) {
           count++;
-          this.winArray.push(Array(row,col));
+          this.winArray.push(Array(row, col));
         } else {
           count = 0;
           this.winArray = [];
@@ -138,13 +135,14 @@ var Game = {
       }
     }
     // Run Top half diagonal Top Right to Botom Left (excl middle)
-    for (var colStart = (length-2); colStart > (this.countWin - 2); colStart-- ) {
+    for (var colStart = (length - 2); colStart > (this.countWin - 2); colStart--) {
       var count = 0;
       this.winArray = [];
-      for (var col = colStart, row = 0; col >= 0 && row <= (length-2); (col-- && row++)) {
+      for (var col = colStart, row = 0; col >= 0 && row <= (length - 2);
+        (col-- && row++)) {
         if (this.board[row][col] === playerChosen) {
           count++;
-          this.winArray.push(Array(row,col));
+          this.winArray.push(Array(row, col));
         } else {
           count = 0;
           this.winArray = [];
@@ -157,26 +155,26 @@ var Game = {
       }
     }
   },
-  isEmpty: function(){
+  isEmpty: function() {
     var check = true;
     for (var i = 0; i < this.board.length; i++) {
-      if (this.board[i].includes('.')){
+      if (this.board[i].includes('.')) {
         return false;
       }
     }
     return check;
   },
-  checkAll: function(playerChosen){
-    if ( this.checkRows(playerChosen) ) {
+  checkAll: function(playerChosen) {
+    if (this.checkRows(playerChosen)) {
       return true;
     }
-    if ( this.checkCols(playerChosen) ) {
+    if (this.checkCols(playerChosen)) {
       return true;
     }
-    if ( this.checkDiagLR(playerChosen) ) {
+    if (this.checkDiagLR(playerChosen)) {
       return true;
     }
-    if ( this.checkDiagRL(playerChosen) ) {
+    if (this.checkDiagRL(playerChosen)) {
       return true;
     }
     if (!this.finish && this.isEmpty()) {
@@ -187,8 +185,7 @@ var Game = {
 };
 
 // jQuery..................................................
-$(document).ready(function(){
-
+$(document).ready(function() {
   // Declare global event listeners used more than once
   var $select = $('select'); // Select dropdown form game setup
   var $msg = $('#msg'); // Container to print instructions
@@ -213,7 +210,7 @@ $(document).ready(function(){
     } else {
       winCount = el;
     }
-    console.log("size: "+size+" winCount: "+winCount+" maxScore: "+maxScore);
+    console.log("size: " + size + " winCount: " + winCount + " maxScore: " + maxScore);
   };
   $select.change(cacheValues);
   cacheValues();
@@ -222,48 +219,49 @@ $(document).ready(function(){
   var showBoard = function() {
     $('.game-setup').hide();
     $('.game-play').show();
-    $('.title').html("Crazy Free4All Tic-Tac-Toe game - Line up "+winCount+" in a row; First to score: "+maxScore);
+    $('.title').html("Crazy Free4All Tic-Tac-Toe game - Line up " + winCount + " in a row; First to score: " + maxScore);
     $buttonReset.hide();
   };
 
   // Create function for building a new board
-
   var buildBoard = function() {
     // Execute game logic based on cached select values
     Game.newBoard(size);
     Game.winCount(winCount);
 
-    var dimension = (100 / size)+'%'; // To set cell width
+    var dimension = (100 / size) + '%'; // To set cell width
     var count = 0; // To number cells
     var list = ''; // Use string to store appended values
     // Loop create new board divs and append to div container. Assign row and col attributes for future access
     for (var row = 0; row < size; row++) {
       for (var col = 0; col < size; col++) {
         count++;
-        list += "<div class='cell' row="+"'"+row+"' col='"+col+"'>"+count+"</div>";
+        list += "<div class='cell' row=" + "'" + row + "' col='" + col + "'>" + count + "</div>";
       }
     }
     $('.container').html(list);
     // Cache event listener on board after build
     $cell = $('.cell');
-    $cell.css({"width": dimension, "height": dimension});
-    $cell.on('click',takeMove);
+    $cell.css({
+      "width": dimension,
+      "height": dimension
+    });
+    $cell.on('click', takeMove);
     // showBoard callback;
     showBoard();
     return true;
   };
 
-  $buildButton.on('click',buildBoard);
+  $buildButton.on('click', buildBoard);
 
   // Selecting players
-
   var player;
 
   // Function to assign player and update msg div
   var pickPlayer = function(name) {
     player = name;
-    console.log(player+" chosen");
-    $msg.html(player+" chosen").removeClass().addClass(player);
+    console.log(player + " chosen");
+    $msg.html(player + " chosen").removeClass().addClass(player);
   };
 
   // Shortcut keys: for choosing players
@@ -287,19 +285,18 @@ $(document).ready(function(){
   });
 
   // Cache value of button when player button clicked
-  var buttonPlayer = function(){
+  var buttonPlayer = function() {
     var el = $(this).attr('class');
     pickPlayer(el);
   };
-  $players.on('click','button',buttonPlayer);
-
+  $players.on('click', 'button', buttonPlayer);
 
   var printWin = function() {
     var winArray = Game.winArray;
     var length = winArray.length;
 
     for (var i = 0; i < length; i++) {
-      $(".cell[row="+winArray[i][0]+"][col="+winArray[i][1]+"]").addClass('win');
+      $(".cell[row=" + winArray[i][0] + "][col=" + winArray[i][1] + "]").addClass('win');
     }
   };
 
@@ -310,12 +307,12 @@ $(document).ready(function(){
   var player4Score = 0;
 
   var signalPlayer = function(string) {
-    $msg.html('Winner is '+ string);
+    $msg.html('Winner is ' + string);
     $body.removeClass().addClass(string);
     $cell.off('click');
     printWin();
     $buttonReset.show();
-    $buttonReset.html('Winner is '+ string + '<br/> Go again');
+    $buttonReset.html('Winner is ' + string + '<br/> Go again');
   };
 
   // Check round score and record value
@@ -350,7 +347,7 @@ $(document).ready(function(){
   };
 
   // Check total round wins
-  var checkGame = function () {
+  var checkGame = function() {
     if (player1Score === maxScore) {
       alert("player1 WINS!");
       location.reload();
@@ -367,7 +364,7 @@ $(document).ready(function(){
   };
 
   // Create callback function when cell is clicked
-  var takeMove = function(){
+  var takeMove = function() {
 
     // Find position of click
     var el = $(this);
@@ -381,7 +378,7 @@ $(document).ready(function(){
     } else if (Game.board[row][col] !== '.') {
       $msg.html("Already marked. Pick again");
     } else {
-      Game.addMark(player,row,col);
+      Game.addMark(player, row, col);
       Game.checkAll(player);
       el.addClass(player);
       checkRound();
@@ -397,15 +394,15 @@ $(document).ready(function(){
     $cell.removeClass('player3');
     $cell.removeClass('player4');
     $cell.removeClass('win');
-    $cell.on('click',takeMove);
+    $cell.on('click', takeMove);
 
     player = undefined;
-    $players.on('click','button',buttonPlayer);
+    $players.on('click', 'button', buttonPlayer);
 
     $body.addClass('reset');
     $msg.html("Board reset. Pick who goes first").removeClass().addClass('.msg');
     $buttonReset.hide();
   };
 
-  $('button.reset').on('click',resetBoard);
+  $('button.reset').on('click', resetBoard);
 }); // jQuery document ready function
