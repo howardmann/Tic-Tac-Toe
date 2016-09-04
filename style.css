@@ -1,19 +1,15 @@
 * {
   box-sizing: border-box;
 }
-
 body {
   margin: 0% 5%;
   width: 100%;
 }
-
-
 .clearfix:after {
   content: "";
   display: block;
   clear: both;
 }
-
 .container {
   width: 450px;
   height: 450px;
@@ -21,7 +17,6 @@ body {
   margin: 0 auto;
   border: 1px solid black;
 }
-
 .cell {
   width: 20%;
   height: 20%;
@@ -29,7 +24,6 @@ body {
   float: left;
   border: 1px solid white;
 }
-
 button {
   font-size: 20px;
   width: 20%;
@@ -37,26 +31,21 @@ button {
   outline: none;
   float: left;
 }
-
 button.player1 {
   margin-left: 30%;
 }
-
 button.player2 {
   margin-right: 30%;
 }
-
 button.reset, button.build-board {
   display: block;
   margin-top: 30px;
   cursor: pointer;
 }
-
 button.reset {
   position: fixed;
   top: 100px;
 }
-
 .msg-container {
   text-align: center;
   font-style: italic;
@@ -69,36 +58,27 @@ button.reset {
   border: 1px solid black;
   background-color: #d3d3d3;
 }
-
-.msg{
+.msg {
   background-color: #d3d3d3;
 }
-
-
 .player1 {
   background-color: chartreuse;
 }
-
 .player2 {
   background-color: yellow;
 }
-
 .reset {
   background-color: ghostwhite;
 }
-
 .game-setup {
   display: block;
 }
-
 .game-play {
   display: none;
 }
-
 select {
   display: block;
 }
-
 .win {
   background-color: hotpink;
 }
