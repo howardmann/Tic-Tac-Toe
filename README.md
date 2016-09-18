@@ -1,4 +1,5 @@
 # GA WDI16 Project-zero
+<a href="https://howardmann.github.io/project-zero/" target="_blank">Github pages URL</a>
 <h2>Description:</h2>
 <p>2 player scalable tic-tac-toe game as part of GA WDI16's week_03 Project-Zero</p>
 
